@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forever 💖</title>
+  <link rel="stylesheet" href="style.css"> <!-- if you have CSS -->
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(#0a0a20, #000);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #gift {
+      width: 150px;
+      height: 150px;
+      background: #ff4d6d;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 20px;
+      transition: transform 0.3s;
+    }
+
+    #gift:hover {
+      transform: scale(1.1);
+    }
+
+    #message {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 24px;
+      line-height: 1.5;
+      animation: fadeIn 2s forwards;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .firework {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎁 Gift Box -->
+  <div id="gift">🎁</div>
+
+  <!-- 💖 Hidden message -->
+  <div id="message">
+    💖 Surprise! 💖<br>
+    I love you forever<br>
+    Since 23 Oct 2025, 17:11 ❤️<br>
+    <img src="pic4.jpeg" alt="Us together 1" style="width:200px; border-radius:10px; margin-top:10px;">
+  </div>
+
+
+  <script>
+    const gift = document.getElementById('gift');
+    const message = document.getElementById('message');
+
+    // Click the gift → reveal message
+    gift.addEventListener('click', () => {
+      gift.style.display = 'none';
+      message.style.display = 'block';
+      launchFireworks();
+    });
+
+    // Fireworks animation
+    function launchFireworks() {
+      for(let i=0; i<30; i++){
+        const firework = document.createElement('div');
+        firework.classList.add('firework');
+        firework.style.width = firework.style.height = Math.random()*8 + 4 + 'px';
+        firework.style.background = `hsl(${Math.random()*360}, 100%, 70%)`;
+        firework.style.left = Math.random()*window.innerWidth + 'px';
+        firework.style.top = Math.random()*window.innerHeight + 'px';
+        document.body.appendChild(firework);
+
+        setTimeout(()=>{
+          firework.remove();
+        }, 2000);
+      }
+
+      // Repeat fireworks every 500ms
+      setInterval(()=>{
+        const firework = document.createElement('div');
+        firework.classList.add('firework');
+        firework.style.width = firework.style.height = Math.random()*8 + 4 + 'px';
+        firework.style.background = `hsl(${Math.random()*360}, 100%, 70%)`;
+        firework.style.left = Math.random()*window.innerWidth + 'px';
+        firework.style.top = Math.random()*window.innerHeight + 'px';
+        document.body.appendChild(firework);
+        setTimeout(()=>firework.remove(),2000);
+      },500);
+    }
+  </script>
+</body>
+</html>

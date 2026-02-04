@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vow One</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 2;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .heart {
+      width: 220px;
+     height: 220px;
+      background: #ff4d6d;
+      position: relative;
+      transform: rotate(-45deg);
+      margin: 30px auto;
+      animation: pulse 1.5s infinite;
+      
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 220px;
+      height: 220px;
+      background: #ff4d6d;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -110px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 110px;
+      top: 0;
+    }
+
+    @keyframes pulse {
+      0% { transform: rotate(-45deg) scale(1); }
+      50% { transform: rotate(-45deg) scale(1.08); }
+      100% { transform: rotate(-45deg) scale(1); }
+    }
+
+    .vow-text {
+      position: absolute;
+      width: 160px;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      text-align: center;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 17px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .no {
+      background: #eee;
+      color: #333;
+      position: absolute;
+    }
+
+    /* Floating hearts */
+    .float {
+      position: absolute;
+      bottom: -20px;
+      font-size: 18px;
+      color: rgba(255, 100, 150, 0.7);
+      animation: floatUp 6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+    .vow-text {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      transform: rotate(45deg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 20px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Vow #1</h2>
+
+    <div class="heart">
+      <div class="vow-text">
+       I promise to hold your hand,<br>
+       to cherish your heart,<br>
+        to brighten your days with love,<br>
+        and to choose you, every single day ❤️<b></b>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="yes" onclick="nextVow()">I Do 💖</button>
+    </div>
+  </div>
+
+  <button id="noBtn" class="no">I Don’t 🙃</button>
+
+  <script>
+    function nextVow() {
+      window.location.href = "vow2.html";
+    }
+
+    const noBtn = document.getElementById("noBtn");
+
+    function moveNo() {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    noBtn.addEventListener("mouseover", moveNo);
+    noBtn.addEventListener("click", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
+
+    // floating hearts
+    setInterval(() => {
+      const h = document.createElement("div");
+      h.className = "float";
+      h.innerText = "❤️ love";
+      h.style.left = Math.random() * 100 + "vw";
+      h.style.fontSize = (14 + Math.random() * 18) + "px";
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 6000);
+    }, 800);
+  </script>
+
+</body>
+</html>

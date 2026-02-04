@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vow Three</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #2b1055, #7597de);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 2;
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+
+    .heart {
+      width: 260px;
+      height: 260px;
+      background: #ff3d68;
+      position: relative;
+      transform: rotate(-45deg);
+      margin: 30px auto;
+      animation: pulse 1.3s infinite;
+      box-shadow: 0 0 30px rgba(255, 60, 100, 0.6);
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 260px;
+      height: 260px;
+      background: #ff3d68;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -130px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 130px;
+      top: 0;
+    }
+
+    @keyframes pulse {
+      0% { transform: rotate(-45deg) scale(1); }
+      50% { transform: rotate(-45deg) scale(1.12); }
+      100% { transform: rotate(-45deg) scale(1); }
+    }
+
+    .vow-text {
+      position: absolute;
+      width: 185px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .buttons {
+      margin-top: 28px;
+    }
+
+    button {
+      padding: 13px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    .yes {
+      background: #ff3d68;
+      color: white;
+      box-shadow: 0 0 15px rgba(255, 60, 100, 0.6);
+    }
+
+    .no {
+      background: #eee;
+      color: #333;
+      position: absolute;
+    }
+
+    .float {
+      position: absolute;
+      bottom: -20px;
+      font-size: 18px;
+      color: rgba(255, 90, 150, 0.75);
+      animation: floatUp 8s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-130vh); opacity: 0; }
+    }
+    .vow-text {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      transform: rotate(45deg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 20px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Final Vow 💍</h2>
+
+    <div class="heart">
+      <div class="vow-text">
+        I promise to be your safe place,<br>
+        your strength on hard days,<br>
+        your biggest supporter,<br>
+        and your forever home.<br><br>
+        No matter what ❤️<br>
+        
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="yes" onclick="nextPage()">I Do 💖</button>
+    </div>
+  </div>
+
+  <button id="noBtn" class="no">I Don’t 🙃</button>
+
+  <script>
+    function nextPage() {
+      window.location.href = "yes2.html";
+    }
+
+    const noBtn = document.getElementById("noBtn");
+
+    function moveNo() {
+      const x = Math.random() * (window.innerWidth - 120);
+      const y = Math.random() * (window.innerHeight - 60);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    noBtn.addEventListener("mouseover", moveNo);
+    noBtn.addEventListener("click", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
+
+    setInterval(() => {
+      const h = document.createElement("div");
+      h.className = "float";
+      h.innerText = "❤️ love";
+      h.style.left = Math.random() * 100 + "vw";
+      h.style.fontSize = (15 + Math.random() * 22) + "px";
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 8000);
+    }, 900);
+  </script>
+
+</body>
+</html>

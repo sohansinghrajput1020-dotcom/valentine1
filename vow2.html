@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vow Two</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 2;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .heart {
+      width: 240px;
+      height: 240px;
+      background: #ff5c8a;
+      position: relative;
+      transform: rotate(-45deg);
+      margin: 30px auto;
+      animation: pulse 1.4s infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 240px;
+      height: 240px;
+      background: #ff5c8a;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -120px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 120px;
+      top: 0;
+    }
+
+    @keyframes pulse {
+      0% { transform: rotate(-45deg) scale(1); }
+      50% { transform: rotate(-45deg) scale(1.1); }
+      100% { transform: rotate(-45deg) scale(1); }
+    }
+
+    .vow-text {
+      position: absolute;
+      width: 175px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    button {
+      padding: 12px 26px;
+      font-size: 17px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    .yes {
+      background: #ff5c8a;
+      color: white;
+    }
+
+    .no {
+      background: #eee;
+      color: #333;
+      position: absolute;
+    }
+
+    .float {
+      position: absolute;
+      bottom: -20px;
+      font-size: 18px;
+      color: rgba(255, 120, 170, 0.7);
+      animation: floatUp 7s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-120vh); opacity: 0; }
+    }
+    .vow-text {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      transform: rotate(45deg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 20px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Vow #2</h2>
+
+    <div class="heart">
+      <div class="vow-text">
+        I promise to listen,<br>
+        even when I don’t understand,<br>
+        to grow with you,<br>
+        fight for us,<br>
+        and never stop choosing love 💕
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="yes" onclick="nextVow()">I Do 💖</button>
+    </div>
+  </div>
+
+  <button id="noBtn" class="no">I Don’t 🙃</button>
+
+  <script>
+    function nextVow() {
+      window.location.href = "vow3.html";
+    }
+
+    const noBtn = document.getElementById("noBtn");
+
+    function moveNo() {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    noBtn.addEventListener("mouseover", moveNo);
+    noBtn.addEventListener("click", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
+
+    setInterval(() => {
+      const h = document.createElement("div");
+      h.className = "float";
+      h.innerText = "❤️ love";
+      h.style.left = Math.random() * 100 + "vw";
+      h.style.fontSize = (14 + Math.random() * 20) + "px";
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 7000);
+    }, 900);
+  </script>
+
+</body>
+</html>

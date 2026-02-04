@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fad0c4, #ff9a9e);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .box {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 20px;
+      max-width: 420px;
+      text-align: left;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .poem p {
+      margin: 6px 0;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .hint {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #777;
+      text-align: center;
+    }
+
+    .proceed {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 30px;
+      background: #ff4d6d;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 18px;
+      color: rgba(255, 77, 109, 0.6);
+      animation: floatUp 6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h2>Just read this slowly ❤️</h2>
+
+    <div class="poem">
+      <p><b>W</b>hen I think of you, I smile.</p>
+      <p><b>I</b> never imagined someone like you.</p>
+      <p><b>L</b>ife feels lighter with you.</p>
+      <p><b>L</b>oving you feels natural.</p>
+      <p><b>Y</b>ou make ordinary days special.</p>
+      <p><b>O</b>nly you calm my chaos.</p>
+      <p><b>U</b>nder every doubt, there’s us.</p>
+      <p><b>M</b>aybe this sounds crazy.</p>
+      <p><b>A</b>ll I know is this feels right.</p>
+      <p><b>R</b>eally, it always has.</p>
+      <p><b>R</b>ight now, my heart is sure.</p>
+      <p><b>Y</b>ou already know what I mean.</p>
+      <p><b>M</b>aybe look closer.</p>
+      <p><b>E</b>very answer is already there.</p>
+    </div>
+
+    <div class="hint">
+      Read the first letter of each line from top to bottom 😉
+    </div>
+
+    <button class="proceed" onclick="goNext()">Shall we proceed?</button>
+  </div>
+
+  <script>
+    function goNext() {
+      // Next trial page (firework proposal later)
+      window.location.href = "proposal.html";
+    }
+
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "❤️ love";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (14 + Math.random() * 18) + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }, 800);
+  </script>
+
+</body>
+</html>

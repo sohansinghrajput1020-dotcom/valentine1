@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>I Love You Shruti ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .section {
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 8vw;
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 5vw;
+      color: #ffd6e0;
+    }
+
+    .counter {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .photo {
+      max-width: 90%;
+      max-height: 400px;
+      border-radius: 20px;
+      margin: 20px auto;
+      display: block;
+    }
+
+    .poem {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #ffd6e0;
+      max-width: 600px;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<div class="section">
+  <h1>I LOVE YOU</h1>
+  <h1>SHRUTI</h1>
+  <h2>Jaanu ❤️</h2>
+</div>
+
+<div class="section">
+  <h2>Our story began on 22 October ❤️</h2>
+  <div class="counter" id="together"></div>
+</div>
+
+<div class="section">
+  <h2>Countdown to Valentine 💘</h2>
+  <div class="counter" id="countdown"></div>
+</div>
+
+<div class="section">
+  <img src="image.jpg" class="photo" alt="Us together">
+</div>
+
+<div class="section">
+  <div class="poem">
+    I may not be perfect,<br>
+    but my heart chose you.<br><br>
+    Through chaos or calm,<br>
+    I’ll always be there for you.<br><br>
+    Today, tomorrow,<br>
+    and every version of us. ❤️
+  </div>
+</div>
+
+<script>
+/* ---------------- FIREWORKS ---------------- */
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+function createFirework() {
+  const x = Math.random() * canvas.width;
+  const y = Math.random() * canvas.height / 2;
+  const color = `hsl(${Math.random()*360},100%,60%)`;
+
+  for (let i = 0; i < 80; i++) {
+    particles.push({
+      x, y,
+      vx: Math.cos(i) * Math.random() * 4,
+      vy: Math.sin(i) * Math.random() * 4,
+      alpha: 1,
+      color
+    });
+  }
+}
+
+function animateFireworks() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach((p, i) => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.alpha -= 0.01;
+    if (p.alpha <= 0) particles.splice(i,1);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = p.alpha;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 2, 0, Math.PI*2);
+    ctx.fill();
+  });
+  requestAnimationFrame(animateFireworks);
+}
+
+setInterval(createFirework, 700);
+animateFireworks();
+
+/* ---------------- RELATIONSHIP COUNTER ---------------- */
+const startDate = new Date("2025-10-22T17:11:00");
+
+function updateTogether() {
+  const now = new Date();
+  let diff = now - startDate;
+
+  const seconds = Math.floor(diff / 1000) % 60;
+  const minutes = Math.floor(diff / (1000*60)) % 60;
+  const hours = Math.floor(diff / (1000*60*60)) % 24;
+  const days = Math.floor(diff / (1000*60*60*24));
+
+  document.getElementById("together").innerText =
+    `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds together ❤️`;
+}
+
+setInterval(updateTogether, 1000);
+updateTogether();
+
+/* ---------------- VALENTINE COUNTDOWN ---------------- */
+const valentines = new Date("2026-02-13T23:00:00");
+
+function updateCountdown() {
+  const now = new Date();
+  let diff = valentines - now;
+
+  if (diff <= 0) {
+    document.getElementById("countdown").innerText = "It's Valentine time 💖";
+    return;
+  }
+
+  const seconds = Math.floor(diff / 1000) % 60;
+  const minutes = Math.floor(diff / (1000*60)) % 60;
+  const hours = Math.floor(diff / (1000*60*60)) % 24;
+  const days = Math.floor(diff / (1000*60*60*24));
+
+  document.getElementById("countdown").innerText =
+    `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds left 💘`;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+<script>
+  // redirect after 15 seconds
+  setTimeout(()=>{
+    window.location.href = "suprise.html";
+  }, 15000); // 15000ms = 15 seconds
+</script>
+
+
+</body>
+</html>
